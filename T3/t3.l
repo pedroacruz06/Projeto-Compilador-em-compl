@@ -8,6 +8,7 @@
 //               that copies otherwise unmatched input to yyout.
 
 #include "token.h"
+#include "lbn.h"
 
 %}
 
@@ -15,8 +16,8 @@
 ([0-9]+\.[0-9]+|[0-9]+) {yylval.num = atoi(yytext); return NUM;}
 "array" {return ARRAYT;}
 "boolean" {return BOOLEANT;}
-"false" {return FALSET;}
-"true" {return TRUET;}
+"false" {yylval.num = 0; return FALSET;}
+"true" {yylval.num = 1; return TRUET;}
 "if" {return IFT;}
 "else" {return ELSET;}
 "while" {return WHILET;}
@@ -56,4 +57,3 @@
 . {return ERROR;}
 
 %%
-
